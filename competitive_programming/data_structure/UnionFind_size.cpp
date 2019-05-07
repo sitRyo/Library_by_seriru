@@ -43,3 +43,33 @@ public:
     return -par[root(x)];
   }
 };
+
+// verify ABC120_D Decayid Bridge
+ 
+int main() {
+  long long n, m, ans = 0;
+  cin >> n >> m;
+  Union_Find<long long> uf(n);
+ 
+  vector<int> a(m), b(m);
+  for (int i = 0; i < m; ++i) {
+    cin >> a[i] >> b[i];
+    a[i] -= 1; b[i] -= 1;
+  }
+  long long con = (n * (n-1)) / 2;
+  vector<long long> comf;
+ 
+  for (int i = m - 1; i >= 0; --i) {
+    comf.push_back(con);
+    if (uf.issame(a[i], b[i])) {
+      continue;
+    }
+    long long ta = uf.size(a[i]), tb = uf.size(b[i]);
+    con -= ta * tb;
+    uf.merge(a[i], b[i]);
+  }
+ 
+  for (int i = m - 1; i >= 0; --i) {
+    cout << comf[i] << endl;
+  }
+}
