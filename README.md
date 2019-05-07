@@ -5,9 +5,10 @@
 
 ### Directory Structure  
 
--  
   - competitive_programing  
     - 競技プログラミング用のライブラリ群。  
+      - graph  
+        - インターフェースは基本的にvector(container)を参照渡しするように統一する。
   - playground  
     - C++の機能を試したり、遊んだりするディレクトリ。  
 
