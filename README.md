@@ -3,7 +3,7 @@
 ## repository  
 競技プログラミングで使用するスニペットやその他ライブラリを整理するリポジトリ。  
 
-### Directory Structure  
+## Directory Structure  
 
   - competitive_programing  
     - 競技プログラミング用のライブラリ群。  
