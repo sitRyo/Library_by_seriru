@@ -8,9 +8,16 @@
   - competitive_programing  
     - 競技プログラミング用のライブラリ群。  
       - graph  
-        - インターフェースは基本的にvector(container)を参照渡しするように統一する。
+        - インターフェースは基本的にvector(container)を参照渡しするように統一する。  
+      - data structure
+        - UF, Segment Treeなど  
+      - combination
+        - 組み合わせの高速処理
+      - algorithm  
+        - sieve prime や gcd lcm, 素因数分解など  
   - playground  
     - C++の機能を試したり、遊んだりするディレクトリ。  
+      - TMP
 
 ### Author  
 せりる(@seriru13)  
