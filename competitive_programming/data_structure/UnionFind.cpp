@@ -22,7 +22,7 @@ public:
     return par[child];
   }
 
-  Union_Find (_Tp n) {
+  Union_Find (size_type n) {
     par.resize(n), rnk.resize(n);
     for (int i = 0; i < n; ++i) {
       par[i] = i;
