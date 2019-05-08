@@ -5,6 +5,9 @@
 using namespace std;
 
 // 素因数分解
+/*
+ * [2]-> 5, [3] -> 5のとき N = 2^5 * 3^5
+ */
 template<typename T>
 map<T, long long> factorize(T x) {
   map<T, long long> res;
@@ -32,6 +35,9 @@ set<T> factorize(T x) {
 }
 
 // 約数の列挙
+/*
+ * 2, 4, 8 ... 的な
+ */
 template<typename T>
 set<T> div_count(T x) {
   set<T> st;
