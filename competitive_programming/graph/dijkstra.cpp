@@ -13,6 +13,7 @@ typedef pair<long long, long long> P_dij;
 
 /* params
  * @s -> start, n -> 要素数, G -> グラフ, d -> 結果(参照渡し)
+ * グラフの要素を0 ~ n - 1として見る
 */
 void dijkstra(const long long s, const long long n,
   vector< vector<edge> > const &G, vector<long long> & d){
