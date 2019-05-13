@@ -41,7 +41,7 @@ set<T> factorize(T x) {
 template<typename T>
 set<T> div_count(T x) {
   set<T> st;
-  for (int i = 1; i * i <= x; ++i) {
+  for (long long i = 1; i * i <= x; ++i) {
     if (x % i == 0) {
       st.insert(i);
       st.insert(x/i);
