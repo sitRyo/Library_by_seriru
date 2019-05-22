@@ -11,7 +11,7 @@ public:
 
   vector<_Tp> par;
 
-  const _Tp & operator[] (size_type child) {
+  const _Tp operator[] (size_type child) {
     return -par[root(child)];
   }
 
