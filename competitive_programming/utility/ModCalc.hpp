@@ -3,23 +3,25 @@
 
 #include <iostream>
 
+/* CUT CUT CUT */
 // MOD付き計算だけでもできるように計算は別クラスで
+// static付き
 class ModCalcBase 
 {
   using mod_type = long long;
 
-  mod_type M = 1000000007;
+  static constexpr mod_type M = 1000000007;
 public:
   
   template <class Reference, class Body>
-  void add(Reference& lval, Body body) const noexcept
+  static void add(Reference& lval, Body body) noexcept
   {
     lval += body % M;
     lval %= M;
   }
 
   template <class Reference, class Thead, class ...Args>
-  void add(Reference& lval, Thead head, Args... body) const noexcept
+  static void add(Reference& lval, Thead head, Args... body) noexcept
   {
     lval += head % M;
     lval %= M;
@@ -27,14 +29,14 @@ public:
   }
 
   template <class Reference, class Body>
-  void mul(Reference& lval, Body body) const noexcept
+  static void mul(Reference& lval, Body body) noexcept
   {
     lval *= body % M;
     lval %= M;
   }
 
   template <class Reference, class Thead, class ...Args>
-  void mul(Reference& lval, Thead head, Args... body) const noexcept
+  static void mul(Reference& lval, Thead head, Args... body) noexcept
   {
     lval *= head % M;
     lval %= M;
@@ -42,7 +44,9 @@ public:
   }
 };
 
-// こっちのクラスは値を持つ。operatorを実装しているのでいろいろできる。
+/* END END END */
+
+// こっちのクラスは値を持つ。operatorをoverloadしているのでいろいろできる。
 template <class T>
 class ModCalc : public ModCalcBase 
 {
@@ -78,7 +82,7 @@ public:
   }
 
   value_type 
-  operator *(ModCalc& rhs)
+  operator *(ModCalc& rhs) const noexcept
   {
     value_type tmp = value;
     mul(tmp, rhs.value);
@@ -86,24 +90,25 @@ public:
   }
 
   ModCalc&
-  operator +=(ModCalc& rhs) 
+  operator +=(ModCalc& rhs) noexcept
   {
     add(value, rhs.value);
     return *this;
   }
 
   ModCalc&
-  operator -=(ModCalc& rhs)
+  operator -=(ModCalc& rhs) noexcept
   {
     add(value, -rhs.value);
     return *this;
   }
 
   ModCalc&
-  operator *=(ModCalc& rhs)
+  operator *=(ModCalc& rhs) noexcept
   {
     mul(value, rhs.value);
     return *this;
   }
 };
+
 #endif

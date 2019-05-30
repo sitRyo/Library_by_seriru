@@ -1,23 +1,23 @@
 #include <iostream>
 
-
 // MOD付き計算だけでもできるように計算は別クラスで
+// static付き
 class ModCalcBase 
 {
   using mod_type = long long;
 
-  mod_type M = 1000000007;
+  static constexpr mod_type M = 1000000007;
 public:
   
   template <class Reference, class Body>
-  void add(Reference& lval, Body body) const noexcept
+  static void add(Reference& lval, Body body) noexcept
   {
     lval += body % M;
     lval %= M;
   }
 
   template <class Reference, class Thead, class ...Args>
-  void add(Reference& lval, Thead head, Args... body) const noexcept
+  static void add(Reference& lval, Thead head, Args... body) noexcept
   {
     lval += head % M;
     lval %= M;
@@ -25,14 +25,14 @@ public:
   }
 
   template <class Reference, class Body>
-  void mul(Reference& lval, Body body) const noexcept
+  static void mul(Reference& lval, Body body) noexcept
   {
     lval *= body % M;
     lval %= M;
   }
 
   template <class Reference, class Thead, class ...Args>
-  void mul(Reference& lval, Thead head, Args... body) const noexcept
+  static void mul(Reference& lval, Thead head, Args... body) noexcept
   {
     lval *= head % M;
     lval %= M;
@@ -76,7 +76,7 @@ public:
   }
 
   value_type 
-  operator *(ModCalc& rhs)
+  operator *(ModCalc& rhs) const noexcept
   {
     value_type tmp = value;
     mul(tmp, rhs.value);
@@ -84,36 +84,45 @@ public:
   }
 
   ModCalc&
-  operator +=(ModCalc& rhs) 
+  operator +=(ModCalc& rhs) noexcept
   {
     add(value, rhs.value);
     return *this;
   }
 
   ModCalc&
-  operator -=(ModCalc& rhs)
+  operator -=(ModCalc& rhs) noexcept
   {
     add(value, -rhs.value);
     return *this;
   }
 
   ModCalc&
-  operator *=(ModCalc& rhs)
+  operator *=(ModCalc& rhs) noexcept
   {
     mul(value, rhs.value);
     return *this;
   }
 };
 
+using std::cout;
+using std::endl;
+
 int main() {
   long long a,b,c;
-  a = 10, b = 8, c = 1;
-
+  a = 10*12345678, b = 8, c = 1;
+  ModCalcBase::add(a,b,c);
+  cout << a << endl;
+  ModCalcBase::mul(a,b,c);
+  cout << a << endl;
   ModCalc<long long> m1(a), m2(b), m3(c);
-  m1 *= m2;
-  std::cout << m1() << " " << m2() << "\n";
+  cout << m1 + m2 << endl;
+  cout << m1 * m2 << endl;
+  cout << m1 - m2 << endl;
+  m1 += m2;
+  cout << m1() << endl;
   m1 -= m2;
-  std::cout << m1() << " " << m2() << "\n";
-  m1 += m3;
-  std::cout << m1() << " " << m2() << "\n";
+  cout << m1() << endl;
+  m1 *= m2;
+  cout << m1() << endl;
 }
