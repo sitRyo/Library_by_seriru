@@ -9,9 +9,6 @@ struct Point {
   double x, y, z;
 };
 
-
-
-
 // distance between 2 points.
 constexpr
 double pythagorean_dim2(Point p1, Point p2) {
