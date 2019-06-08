@@ -1,0 +1,22 @@
+* recursive_tmp_cpp11.cpp
+再帰処理を使用して型にN個のポインタを付与するメタ関数
+
+メタ関数をするには, 静的メタ構造体が必要 -> ただ型を返すだけ
+
+エントリーポイント
+template < class T, int N >
+auto my_add_pointers (T) 
+-> my_add_pointers_impl (実装部分)
+
+ポインタを返す、Nを１つ減らす
+template < class T, int N > 
+auto my_add_pointers_impl (T, int_<N>, cont)
+
+型を返す
+template < class T, int N > 
+auto my_add_pointers_impl (T, int_<N>, end)
+
+N == 0ならばend, else cont を返す
+
+template < int N >
+auto is_end(int_<N>)
