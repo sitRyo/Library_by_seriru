@@ -33,7 +33,7 @@ auto add_pointers_impl( T, int_<N>, end )
 -> T;
 
 template < class T, int N >
-auto add_pointer( T, int_<N> )
+auto add_pointers( T, int_<N> )
 -> decltype(
   add_pointers_impl (
     std::declval<T>(),
@@ -47,8 +47,8 @@ auto add_pointer( T, int_<N> )
 );
 
 template < class T, int N >
-using double_pointer = decltype(
-  add_pointer(
+using pow_pointer = decltype(
+  add_pointers(
     std::declval<T>(),
     int_<N>()
   )
@@ -56,5 +56,5 @@ using double_pointer = decltype(
 
 int main() {
   int* p;
-  double_pointer< int, 2 > dp = &p;
+  pow_pointer< int, 2 > dp = &p;
 }
