@@ -17,7 +17,7 @@ struct Edge {
 };
 
 // 最短距離の更新は |V| - 1 回行う。
-vector<ll> bellmanFord(vector<vector<Edge>> graph, int n, int s, int g) {
+vector<ll> bellmanFord(vector<vector<Edge>> const& graph, int n, int s, int g) {
   vector<ll> d(n+1, INF);
   d[s] = 0;
   int roopLimit = n - 1;
