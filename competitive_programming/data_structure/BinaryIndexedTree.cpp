@@ -14,9 +14,15 @@ void add(ll index, ll value) {
 }
 
 // 1-indexed, a[1] ~ a[index] の総和
-void get(ll index) {
+ll get(ll index) {
   ll ret = 0;
   for (int i = index; i > 0; i -= i & (-i)) ret += bit[i];
+  return ret;
+}
+
+// 1-indexed, a[x] ~ a[y]までの区間和を取る。
+ll sum(int x, int y) {
+  return get(y) - get(x);
 }
 
 int main() {}
