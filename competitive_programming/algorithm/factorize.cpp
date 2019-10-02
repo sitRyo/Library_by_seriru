@@ -49,3 +49,15 @@ set<T> div_count(T x) {
   }
   return st;
 }
+
+template<typename T>
+map<T, bool> div_count(T x) {
+  map<T, bool> st;
+  for (long long i = 1; i * i <= x; ++i) {
+    if (x % i == 0) {
+      st[i] = true;
+      st[x/i] = true;
+    }
+  }
+  return st;
+}
